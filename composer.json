@@ -1,0 +1,16 @@
+{
+  "name": "nikola/counseling_api",
+  "authors": [
+    {
+      "name": "JelaJs",
+      "email": "nikola4434@gmail.com"
+    }
+  ],
+  "require": {},
+  "autoload": {
+    "psr-4": {
+      "Core\\": "Core/",
+      "Http\\": "Http/"
+    }
+  }
+}
