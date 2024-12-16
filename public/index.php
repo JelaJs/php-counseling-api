@@ -18,7 +18,6 @@ $uri = parse_url($_SERVER['REQUEST_URI'])['path'];
 $method = $_POST['_method'] ?? $_SERVER['REQUEST_METHOD'];
 
 try {
-    //ova metoda ce rutirati current uri gde treba da ide
     $router->route($uri, $method);
 
 } catch(\Exception $e) {
