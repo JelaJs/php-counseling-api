@@ -10,27 +10,19 @@ $password = $_POST['password'] ?? null;
 $type = $_POST['type'] ?? null;
 
 if(!trim($username) || !trim($email) || !trim($password) || !trim($type)) {
-    http_response_code(401);
-    echo json_encode(["error" => "Missing parameter"]);
-    die();
+    errorResponse(400, "Missing parameter");
 }
 
 if(!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-    http_response_code(401);
-    echo json_encode(["error" => "Invalid Email format"]);
-    die();
+    errorResponse(400, "Invalid Email format");
 }
 
 if(strtolower($type) !== "advisor" && strtolower($type) !== "listener") {
-    http_response_code(401);
-    echo json_encode(["error" => "Type can be eather Advisor or Listener"]);
-    die();
+    errorResponse(400, "Type can be eather Advisor or Listener");
 }
 
 if(strlen($password) < 7 || strlen($password) > 255) {
-    http_response_code(401);
-    echo json_encode(["error" => "Add password with more than 7 and less that 255 characters"]);
-    die();
+    errorResponse(400, "Add password with more than 7 and less than 255 characters");
 }
 
 $db = App::resolve(Database::class);
@@ -40,9 +32,7 @@ $result = $db->query("SELECT * FROM users WHERE email = :email", [
 ])->find();
 
 if($result) {
-    http_response_code(401);
-    echo json_encode(["error" => "User with this email already exist"]);
-    die();
+    errorResponse(400, "User with this email already exist");
 }
 
 $hashedPassword = password_hash($password, PASSWORD_BCRYPT);

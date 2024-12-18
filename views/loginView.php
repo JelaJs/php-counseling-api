@@ -15,10 +15,8 @@ $payload = [
 
 $jwt = \Firebase\JWT\JWT::encode($payload, $key, "HS256");
 
-echo json_encode([
+dataResponse([
     'success' => true,
     'message' => 'Login successful',
     'token' => $jwt
-]); 
-
-die();
+]);

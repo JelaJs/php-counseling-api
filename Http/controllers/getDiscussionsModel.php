@@ -8,9 +8,7 @@ $db = App::resolve(Database::class);
 $discussions = $db->query("SELECT * FROM discussions")->get();
 
 if(!$discussions) {
-    http_response_code(404);
-    echo json_encode(["message" => "Product not found"]);
-    return;
+    errorResponse(400, "Discussion not found");
 }
 
 view('getDiscussionsview.php', [

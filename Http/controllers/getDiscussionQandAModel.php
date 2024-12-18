@@ -6,33 +6,25 @@ use Core\Database;
 $id = (int) $_GET['discussion_id'] ?? null;
 
 if(!$id) {
-    http_response_code(401);
-    echo json_encode(["message" => "Product id needs to be type integer"]);
-    return;
+    errorResponse(401, 'Product id needs to be type integer');
 }
 
 $db = App::resolve(Database::class);
 
-$questions = $db->query("SELECT * FROM questions WHERE discussion_id = :id", [
+$questions = $db->query("SELECT q.*, u.username FROM questions AS q INNER JOIN users AS u ON u.id = q.user_id WHERE q.discussion_id = :id", [
     "id" => $id
 ])->get();
 
 if(!$questions) {
-    http_response_code(400);
-    echo json_encode(["message" => "No questions with this id"]);
-    return;
+    errorResponse(400, 'No questions with this id');
 }
 
-$answers = $db->query("SELECT * FROM answers WHERE discussion_id = :id", [
+$answers = $db->query("SELECT a.*, u.username FROM answers AS a INNER JOIN users AS u ON u.id = a.user_id WHERE a.discussion_id = :id", [
     "id" => $id
 ])->get();
 
 if(!$answers) {
-    echo json_encode([
-        "data" => $questions
-    ]);
-
-    die();
+    dataResponse($questions);
 }
 
 $questionsAndAnswers = array_merge($questions, $answers);
