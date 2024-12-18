@@ -2,6 +2,7 @@
 
 use Core\App;
 use Core\Database;
+use Core\Validator;
 
 //premesti u container
 $dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . "/../../");
@@ -10,11 +11,11 @@ $dotenv->load();
 $email = $_POST['email'] ?? null;
 $password = $_POST['password'] ?? null;
 
-if(!trim($email) || !trim($password)) {
+if(!Validator::inputs($email, $password)) {
     errorResponse(400, "Missing parameter");
 }
 
-if(!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+if(!Validator::email($email)) {
     errorResponse(400, "Invalid email format");
 }
 

@@ -6,3 +6,5 @@ $router->get('/counseling_api/discussionsQandA/{discussion_id}', 'getDiscussionQ
 
 $router->post('/counseling_api/register', 'registerModel.php');
 $router->post('/counseling_api/login', 'loginModel.php');
+
+$router->post('/counseling_api/discussions', 'createDiscussionModel.php');

@@ -2,6 +2,7 @@
 
 use Core\App;
 use Core\Database;
+use Core\Validator;
 
 
 $username = $_POST['username'] ?? null; 
@@ -9,19 +10,19 @@ $email = $_POST['email'] ?? null;
 $password = $_POST['password'] ?? null;
 $type = $_POST['type'] ?? null;
 
-if(!trim($username) || !trim($email) || !trim($password) || !trim($type)) {
+if(!Validator::inputs($username, $email, $password, $type)) {
     errorResponse(400, "Missing parameter");
 }
 
-if(!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+if(!Validator::email($email)) {
     errorResponse(400, "Invalid Email format");
 }
 
-if(strtolower($type) !== "advisor" && strtolower($type) !== "listener") {
+if(Validator::type($type)) {
     errorResponse(400, "Type can be eather Advisor or Listener");
 }
 
-if(strlen($password) < 7 || strlen($password) > 255) {
+if(!Validator::string($password, 7, 255)) {
     errorResponse(400, "Add password with more than 7 and less than 255 characters");
 }
 
