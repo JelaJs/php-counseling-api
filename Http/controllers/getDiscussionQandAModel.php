@@ -6,7 +6,7 @@ use Core\Database;
 $id = (int) $_GET['discussion_id'] ?? null;
 
 if(!$id) {
-    http_response_code(400);
+    http_response_code(401);
     echo json_encode(["message" => "Product id needs to be type integer"]);
     return;
 }
@@ -18,7 +18,7 @@ $questions = $db->query("SELECT * FROM questions WHERE discussion_id = :id", [
 ])->get();
 
 if(!$questions) {
-    http_response_code(404);
+    http_response_code(400);
     echo json_encode(["message" => "No questions with this id"]);
     return;
 }
@@ -44,8 +44,6 @@ usort($questionsAndAnswers, function($a, $b) {
     return $timeA <=> $timeB;
 });
 
-echo json_encode([
-    "data" => $questionsAndAnswers
+view('getDiscussionsQandAView.php', [
+    'data' => $questionsAndAnswers
 ]);
-
-die();

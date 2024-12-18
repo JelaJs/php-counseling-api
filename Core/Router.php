@@ -74,7 +74,7 @@ class Router {
 
     protected function abort($code = 404) {
         http_response_code($code);
-        echo "Not Found";
+        echo json_encode(["error" => "Page not found"]);
         die();
     }
 }

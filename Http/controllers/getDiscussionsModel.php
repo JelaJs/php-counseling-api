@@ -13,8 +13,6 @@ if(!$discussions) {
     return;
 }
 
-echo json_encode([
-    "data" => $discussions
+view('getDiscussionsview.php', [
+    'data' => $discussions
 ]);
-
-die();

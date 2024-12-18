@@ -4,7 +4,6 @@ namespace Core\Middleware;
 use Firebase\JWT\JWT;
 use Firebase\JWT\Key;
 
-//IZENI ZA REST API PROVERAVA TOKEN UMESTO SESSIJE
 class Auth {
     public function handle() {
         if(isset($_SERVER['HTTP_AUTHORIZATION'])) {

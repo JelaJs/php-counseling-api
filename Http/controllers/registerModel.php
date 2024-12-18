@@ -3,36 +3,33 @@
 use Core\App;
 use Core\Database;
 
-$json = file_get_contents('php://input');
 
-$data = json_decode($json, true);
-
-$username = $data['username'] ?? null; 
-$email = $data['email'] ?? null;
-$password = $data['password'] ?? null;
-$type = $data['type'] ?? null;
+$username = $_POST['username'] ?? null; 
+$email = $_POST['email'] ?? null;
+$password = $_POST['password'] ?? null;
+$type = $_POST['type'] ?? null;
 
 if(!trim($username) || !trim($email) || !trim($password) || !trim($type)) {
     http_response_code(401);
-    echo "Missing parameter";
+    echo json_encode(["error" => "Missing parameter"]);
     die();
 }
 
 if(!filter_var($email, FILTER_VALIDATE_EMAIL)) {
     http_response_code(401);
-    echo "Invalid Email format";
+    echo json_encode(["error" => "Invalid Email format"]);
     die();
 }
 
 if(strtolower($type) !== "advisor" && strtolower($type) !== "listener") {
     http_response_code(401);
-    echo "Type can be eather Advisor or Listener";
+    echo json_encode(["error" => "Type can be eather Advisor or Listener"]);
     die();
 }
 
 if(strlen($password) < 7 || strlen($password) > 255) {
     http_response_code(401);
-    echo "Add password with more than 7 and less that 255 characters";
+    echo json_encode(["error" => "Add password with more than 7 and less that 255 characters"]);
     die();
 }
 
@@ -44,7 +41,7 @@ $result = $db->query("SELECT * FROM users WHERE email = :email", [
 
 if($result) {
     http_response_code(401);
-    echo "User with this email already exist.";
+    echo json_encode(["error" => "User with this email already exist"]);
     die();
 }
 
@@ -57,4 +54,4 @@ $db->query("INSERT INTO users (email, password, type, username) VALUES (:email, 
     "username" => $username
 ]);
 
-echo "User successfully register";
+view('registerView.php');

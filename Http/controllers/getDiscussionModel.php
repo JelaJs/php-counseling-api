@@ -18,13 +18,11 @@ $discussion = $db->query("SELECT * FROM discussions WHERE id = :id", [
 ])->find();
 
 if(!$discussion) {
-    http_response_code(404);
+    http_response_code(400);
     echo json_encode(["message" => "No product with this id"]);
     return;
 }
 
-echo json_encode([
-    "data" => $discussion
+view('getDiscussionView.php', [
+    'data' => $discussion
 ]);
-
-die();
