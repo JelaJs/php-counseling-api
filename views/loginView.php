@@ -9,7 +9,7 @@ $payload = [
     "nbf" => $issuedAt,
     "data" => [
         "username" => $username,
-        "email" => $email
+        "id" => $id
     ],
 ];
 

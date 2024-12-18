@@ -19,6 +19,8 @@ if(!$discussion) {
     errorResponse(400, "No product with this id");
 }
 
+$discussion['have_answer'] = (bool) $discussion['have_answer'];
+
 view('getDiscussionView.php', [
     'data' => $discussion
 ]);

@@ -36,3 +36,22 @@ function successMessage($message) {
     echo json_encode(["message" => $message]);
     die();
 }
+
+function convertToBool(&$arr, $row) {
+    foreach($arr as &$data) {
+        $data[$row] = (bool) $data[$row];
+    }
+}
+
+//converting decoded jwt token data into assoc. arr.
+function objectToArray($obj) {
+    // If it's an object, cast it to an array
+    if (is_object($obj)) {
+        $obj = get_object_vars($obj);
+    }
+    // If it's an array, recursively process each element
+    if (is_array($obj)) {
+        return array_map('objectToArray', $obj);
+    }
+    return $obj; // Return scalar values as is
+}

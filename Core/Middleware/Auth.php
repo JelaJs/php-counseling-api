@@ -3,6 +3,7 @@
 namespace Core\Middleware;
 use Firebase\JWT\JWT;
 use Firebase\JWT\Key;
+use Core\JwtToken;
 
 class Auth {
     public function handle() {
@@ -20,6 +21,7 @@ class Auth {
 
             try {
                 $decoded = JWT::decode($jwt, new Key($secretKey, 'HS256'));
+                JwtToken::set($decoded);
 
             } catch(\Exception $e) {
                 http_response_code(401);

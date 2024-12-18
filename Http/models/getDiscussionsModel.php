@@ -11,6 +11,8 @@ if(!$discussions) {
     errorResponse(400, "Discussion not found");
 }
 
-view('getDiscussionsview.php', [
+convertToBool($discussions, 'have_answer');
+
+view('getDiscussionsView.php', [
     'data' => $discussions
 ]);

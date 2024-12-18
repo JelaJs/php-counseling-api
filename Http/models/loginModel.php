@@ -37,5 +37,5 @@ if(!password_verify($password, $hashedPassword)) {
 
 view('loginView.php', [
     'username' => $result['username'],
-    'email' => $result['email']
+    'id' => $result['id']
 ]);
