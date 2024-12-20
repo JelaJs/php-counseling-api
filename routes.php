@@ -12,3 +12,6 @@ $router->delete('/counseling_api/discussion/{id}', 'deleteDiscussionModel.php')-
 $router->patch('/counseling_api/discussion/{id}', 'updateDiscussionModel.php')->only('auth');
 
 $router->patch('/counseling_api/users', 'updateUserModel.php')->only('auth');
+
+$router->post('/counseling_api/discussion/questions/{id}', 'createQuestionModel.php')->only('auth');
+$router->post('/counseling_api/discussion/answers/{id}', 'createAnswerModel.php')->only('auth');
