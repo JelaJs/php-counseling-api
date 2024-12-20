@@ -1,0 +1,3 @@
+<?php
+
+successMessage("Discussion deleted");
