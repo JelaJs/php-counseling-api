@@ -12,4 +12,12 @@ class JwtToken {
     public static function get() {
         return self::$decodedJwt;
     }
+
+    public static function checkTime($tokenTime) {
+        $timeLimit = time() - 600;
+
+        if($tokenTime < $timeLimit) {
+            throw new \Exception("Token expired");
+        }
+    }
 }

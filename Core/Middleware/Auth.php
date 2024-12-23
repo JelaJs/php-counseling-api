@@ -22,7 +22,9 @@ class Auth {
             try {
                 $decoded = JWT::decode($jwt, new Key($secretKey, 'HS256'));
                 JwtToken::set($decoded);
-                dd($decoded);
+                $decodedAssoc = json_decode(json_encode($decoded), true);
+
+                JwtToken::checkTime($decodedAssoc['iat']);
 
             } catch(\Exception $e) {
                 http_response_code(401);
