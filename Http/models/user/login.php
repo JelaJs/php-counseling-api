@@ -4,8 +4,7 @@ use Core\App;
 use Core\Database;
 use Core\Validator;
 
-//premesti u container
-$dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . "/../../");
+$dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . "/../../../");
 $dotenv->load();
 
 $email = $_POST['email'] ?? null;

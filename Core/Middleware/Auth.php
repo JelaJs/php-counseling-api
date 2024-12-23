@@ -22,6 +22,7 @@ class Auth {
             try {
                 $decoded = JWT::decode($jwt, new Key($secretKey, 'HS256'));
                 JwtToken::set($decoded);
+                dd($decoded);
 
             } catch(\Exception $e) {
                 http_response_code(401);
