@@ -35,7 +35,7 @@ if(!password_verify($password, $hashedPassword)) {
     errorResponse(400, "Invalid password");
 }
 
-view('loginView.php', [
+view('user/login.view.php', [
     'username' => $result['username'],
     'id' => $result['id'],
     'type' => $result['type']

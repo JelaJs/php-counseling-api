@@ -45,4 +45,4 @@ $db->query("INSERT INTO users (email, password, type, username) VALUES (:email, 
     "username" => $username
 ]);
 
-view('registerView.php');
+view('user/register.view.php');

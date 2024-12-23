@@ -13,6 +13,6 @@ if(!$discussions) {
 
 convertToBool($discussions, 'have_answer');
 
-view('getDiscussionsView.php', [
+view('discussions/index.view.php', [
     'data' => $discussions
 ]);

@@ -23,4 +23,4 @@ $db->query('UPDATE users SET email = :email, username = :username WHERE id = :id
     'id' => $decodedAssoc['data']['id']
 ]);
 
-view('updateUserView.php');
+view('user/update.view.php');

@@ -15,4 +15,4 @@ $db->query('DELETE FROM discussions WHERE id = :id', [
     'id' => $id
 ]);
 
-view('deleteDiscussionView.php');
+view('discussions/destroy.view.php');

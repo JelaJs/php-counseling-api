@@ -30,4 +30,4 @@ $result = $db->query("INSERT INTO questions (user_id, question, discussion_id) V
     'discussion_id' => $discussionId
 ]);
 
-view('createDiscussionView.php');
+view('discussions/store.view.php');

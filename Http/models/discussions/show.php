@@ -21,6 +21,6 @@ if(!$discussion) {
 
 $discussion['have_answer'] = (bool) $discussion['have_answer'];
 
-view('getDiscussionView.php', [
+view('discussions/show.view.php', [
     'data' => $discussion
 ]);

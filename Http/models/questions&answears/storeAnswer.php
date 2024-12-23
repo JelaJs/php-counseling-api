@@ -48,3 +48,5 @@ $db->query("UPDATE discussions SET have_answer = 1, advisor_id = :advisor_id WHE
     'advisor_id' => $decodedAssoc['data']['id'],
     'id' => $discussionId
 ]);
+
+die();

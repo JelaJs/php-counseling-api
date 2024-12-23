@@ -36,6 +36,6 @@ usort($questionsAndAnswers, function($a, $b) {
     return $timeA <=> $timeB;
 });
 
-view('getDiscussionsQandAView.php', [
+view('questions&answers/index.view.php', [
     'data' => $questionsAndAnswers
 ]);

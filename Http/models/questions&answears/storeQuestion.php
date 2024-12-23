@@ -43,3 +43,5 @@ $db->query("INSERT INTO questions (user_id, question, discussion_id) VALUES (:us
     'question' => $question,
     'discussion_id' => $discussionId
 ]);
+
+die();

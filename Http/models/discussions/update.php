@@ -22,4 +22,4 @@ $db->query('UPDATE discussions SET topic = :topic WHERE id = :id', [
     'id' => $id
 ]);
 
-view('updateDiscussionView.php');
+view('discussions/update.view.php');
