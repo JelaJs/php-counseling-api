@@ -61,7 +61,7 @@ class Router {
     
                 $_GET = array_merge($_GET, $params);
     
-                return require base_path('Http/models/' . $route['controller']);
+                return require base_path('Http/controllers/' . $route['controller']);
             }
         }
     
